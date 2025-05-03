@@ -24,7 +24,7 @@ async function A() {
     const filePath = "veri.json";  
 
     try {
-        const response = await fetch(`https://api.github.com/repos/turkum-webci/denemem/contents/data/veri.json`, {
+        const response = await fetch(`https://api.github.com/repos/turkum-webci/denemem/contents/veri.json`, {
             headers: {
             Authorization: `Bearer ${Token}`, 
             Accept: "application/vnd.github.v3.raw"
@@ -38,7 +38,7 @@ async function A() {
         content.messages.push(yv); 
 
         const gnclveri = btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2))));
-        await fetch(`https://api.github.com/repos/turkum-webci/denemem/contents/data/veri.json`, {
+        await fetch(`https://api.github.com/repos/turkum-webci/denemem/contents/veri.json`, {
             method: "PUT",
             headers: { Authorization: `Bearer ${Token}`, Accept: "application/vnd.github.v3+json" },
             body: JSON.stringify({
@@ -57,10 +57,10 @@ async function A() {
 
 async function gosterMesajlar() {
     try {
-        const response = await fetch(`https://raw.githubusercontent.com/turkum-webci/denemem/main/veri.json`);
-        if (!response.ok) throw new Error("Veri alınamadı!");
+        const respon = await fetch(`https://raw.githubusercontent.com/turkum-webci/denemem/main/veri.json`);
+        if (!respon.ok) throw new Error("Veri alınamadı!");
 
-        const data = await response.json();
+        const data = await respon.json();
         const messagesDiv = document.getElementById("aa");
         messagesDiv.innerHTML = ""; 
         data.messages.forEach(msg => {
