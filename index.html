@@ -21,15 +21,15 @@ async function A() {
     const filePath = "veri.json";
     
     try {
-        const response = await fetch(`https://api.github.com/repos/$/{repoowner}/$/{reponame}/contents/$/{filePath}`, {
+        const response = await fetch(`https://api.github.com/repos/${repoowner}/${reponame}/contents/${filePath}`, {
         headers: {Authorization: `Bearer ${Token}` }
         });
         const data = await response.json();
         const content = JSON.parse(atob(data.content));
         content.messages.push(yv);
         
-        const gnclveri = btoa(JSON.stringify(content, null, 2));
-        response = await fetch(`https://api.github.com/repos/$/{repoowner}/$/{reponame}/contents/$/{filePath}`, {
+        const gnclveri = btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2))));
+        response = await fetch(`https://api.github.com/repos/${repoowner}/${reponame}/contents/${filePath}`, {
             method: 'PUT',
             headers: {Authorization: `Bearer ${Token}` },
             body: JSON.stringify({
