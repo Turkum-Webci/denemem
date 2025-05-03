@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>birşey yaz</title>
+    <title>deneme yaz</title>
 </head>
 <body>
     <input type="text" id="iste" placeholder="Bir şey yaz...">
@@ -24,7 +24,7 @@ async function A() {
     const filePath = "veri.json";  
 
     try {
-        const response = await fetch(`https://api.github.com/repos/turkum-webci/denemem/contents/veri.json`, {
+        const response = await fetch(`https://api.github.com/repos/turkum-webci/denemem/contents/data/veri.json`, {
             headers: {
             Authorization: `Bearer ${Token}`, 
             Accept: "application/vnd.github.v3.raw"
@@ -38,7 +38,7 @@ async function A() {
         content.messages.push(yv); 
 
         const gnclveri = btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2))));
-        await fetch(`https://api.github.com/repos/turkum-webci/denemem/contents/veri.json`, {
+        await fetch(`https://api.github.com/repos/turkum-webci/denemem/contents/data/veri.json`, {
             method: "PUT",
             headers: { Authorization: `Bearer ${Token}`, Accept: "application/vnd.github.v3+json" },
             body: JSON.stringify({
