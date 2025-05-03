@@ -45,7 +45,7 @@ async function A() {
 }
 async function gosterMesajlar() {
     try {
-        response = await fetch(`https://raw.githubusercontent.com/$/{repoowner}/$/{reponame}/$/{filePath}`);
+        response = await fetch(`https://raw.githubusercontent.com/${repoowner}/${reponame}/${filePath}`);
         const data = await response.json();
         const m2 = document.getElementById("aa");
         m2.innerHTML = "";
