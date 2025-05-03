@@ -3,26 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>at</title>
+    <title>birşey yaz</title>
 </head>
 <body>
-    <input type="text" id="iste" placeholder="Birşeyler yaz...">
+    <input type="text" id="iste" placeholder="Bir şey yaz...">
     <button onclick="A()">Gönder!</button>
+
     <div id="aa"></div>
 
     <script>
 async function A() {
     const m = document.getElementById("iste").value;
+    if (!m) return alert("Boş mesaj gönderilemez!");
 
     const yv = { user: "Anonim", text: m };
 
     const Token = "GITHUB_TOKEN"; 
     const repoowner = "turkum-webci";  
-    const reponame = "denemem";
+    const reponame = "denemem";  
     const filePath = "veri.json";  
 
     try {
-        const response = await fetch(`https://api.github.com/repos/${repoowner}/${reponame}/contents/${filePath}`, {
+        const response = await fetch(`https://api.github.com/repos/turkum-webci/denemem/contents/veri.json`, {
             headers: { Authorization: `Bearer ${Token}` }
         });
 
@@ -33,7 +35,7 @@ async function A() {
         content.messages.push(yv); 
 
         const gnclveri = btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2))));
-        await fetch(`https://api.github.com/repos/${repoowner}/${reponame}/contents/${filePath}`, {
+        await fetch(`https://api.github.com/repos/turkum-webci/denemem/contents/veri.json`, {
             method: "PUT",
             headers: { Authorization: `Bearer ${Token}` },
             body: JSON.stringify({
@@ -52,7 +54,7 @@ async function A() {
 
 async function gosterMesajlar() {
     try {
-        const response = await fetch(`https://raw.githubusercontent.com/${repoowner}/${reponame}/main/${filePath}`);
+        const response = await fetch(`https://raw.githubusercontent.com/turkum-webci/denemem/main/veri.json`);
         if (!response.ok) throw new Error("Veri alınamadı!");
 
         const data = await response.json();
