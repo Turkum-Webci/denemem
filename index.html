@@ -29,7 +29,7 @@ async function A() {
         content.messages.push(yv);
         
         const gnclveri = btoa(JSON.stringify(content, null, 2));
-        guncelrepo = await fetch(`https://api.github.com/repos/$/{repoowner}/$/{reponame}/contents/$/{filePath}`, {
+        response = await fetch(`https://api.github.com/repos/$/{repoowner}/$/{reponame}/contents/$/{filePath}`, {
             method: 'PUT',
             headers: {Authorization: `Bearer ${Token}` },
             body: JSON.stringify({
@@ -45,7 +45,7 @@ async function A() {
 }
 async function gosterMesajlar() {
     try {
-        const response = await fetch(`https://raw.githubusercontent.com/$/{repoowner}/$/{reponame}/$/{filePath}`);
+        response = await fetch(`https://raw.githubusercontent.com/$/{repoowner}/$/{reponame}/$/{filePath}`);
         const data = await response.json();
         const m2 = document.getElementById("aa");
         m2.innerHTML = "";
