@@ -28,13 +28,13 @@ async function A() {
         const content = JSON.parse(atob(data.content));
         content.messages.push(yv);
         
-        const guncelveri = btoa(JSON.stringify(content, null, 2));
+        const gnclveri = btoa(JSON.stringify(content, null, 2));
         guncelrepo = await fetch(`https://api.github.com/repos/$/{repoowner}/$/{reponame}/contents/$/{filePath}`, {
             method: 'PUT',
             headers: {Authorization: `Bearer ${Token}` },
             body: JSON.stringify({
                 message:"Güncelleme",
-                content: guncelveri,
+                content: gnclveri,
                 sha: data.sha
             })
         });
